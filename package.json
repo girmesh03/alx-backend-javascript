@@ -1,0 +1,32 @@
+{
+  "name": "alx-backend-javascript",
+  "version": "1.0.0",
+  "description": "Backend JavaScript project for ALX student tasks.",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/girmesh03/alx-backend-javascript.git"
+  },
+  "keywords": [
+    "backend",
+    "JavaScript",
+    "ALX",
+    "student",
+    "tasks"
+  ],
+  "author": "Girmachew Zewdie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/girmesh03/alx-backend-javascript/issues"
+  },
+  "homepage": "https://github.com/girmesh03/alx-backend-javascript#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.22.9",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.45.0",
+    "jest": "^29.6.1"
+  }
+}
