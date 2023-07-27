@@ -1,12 +1,10 @@
-// 2-then.js
-
 function handleResponseFromAPI(promise) {
+  const body = { status: 200, body: 'success' };
+
   return promise
-    .then((result) => {
-      console.log('Got a response from the API');
-      return { status: 200, body: 'success' };
-    })
-    .catch((error) => new Error());
+    .then(() => body)
+    .catch((error) => error)
+    .finally(() => console.log('Got a response from the API'));
 }
 
 export default handleResponseFromAPI;
