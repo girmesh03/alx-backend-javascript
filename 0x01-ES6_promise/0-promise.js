@@ -1,8 +1,7 @@
 function getResponseFromAPI() {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve("API Response Data");
-        }, 1000);
+        resolve({ status: 200, body: 'Success' });
+        reject(Error('Status code is 404'));
     });
 }
 
