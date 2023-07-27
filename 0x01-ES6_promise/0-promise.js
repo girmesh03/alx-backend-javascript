@@ -1,4 +1,4 @@
-/*0-promise.js*/
+// 0-promise.js
 
 function getResponseFromAPI() {
     return new Promise((resolve, reject) => {
