@@ -7,25 +7,21 @@ async function handleProfileSignup(firstName, lastName, fileName) {
     const signUpPromise = signUpUser(firstName, lastName);
     const uploadPromise = uploadPhoto(fileName);
 
-    try {
-        const [signUpResult, uploadResult] = await Promise.allSettled([
-            signUpPromise,
-            uploadPromise,
-        ]);
+    const [signUpResult, uploadResult] = await Promise.allSettled([
+        signUpPromise,
+        uploadPromise,
+    ]);
 
-        return [
-            {
-                status: signUpResult.status,
-                value: signUpResult.status === 'fulfilled' ? signUpResult.value : signUpResult.reason,
-            },
-            {
-                status: uploadResult.status,
-                value: uploadResult.status === 'fulfilled' ? uploadResult.value : uploadResult.reason,
-            },
-        ];
-    } catch (error) {
-        return [];
-    }
+    return [
+        {
+            status: signUpResult.status,
+            value: signUpResult.status === 'fulfilled' ? signUpResult.value : signUpResult.reason,
+        },
+        {
+            status: uploadResult.status,
+            value: uploadResult.status === 'fulfilled' ? uploadResult.value : uploadResult.reason,
+        },
+    ];
 }
 
 export default handleProfileSignup;
