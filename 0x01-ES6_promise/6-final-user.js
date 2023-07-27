@@ -1,24 +1,16 @@
-// 6-final-user.js
+import signUpUser from './4-user-promise';
+import uploadPhoto from './5-photo-reject';
 
-import { signUpUser, uploadPhoto } from './utils';
-
-async function handleProfileSignup(firstName, lastName, fileName) {
-  try {
-    const [userResult, photoResult] = await Promise.all([
-      signUpUser(firstName, lastName),
-      uploadPhoto(fileName),
-    ]);
-
-    return [
-      { status: 'fulfilled', value: userResult },
-      { status: 'fulfilled', value: photoResult },
-    ];
-  } catch (error) {
-    return [
-      { status: 'rejected', value: error },
-      { status: 'rejected', value: error },
-    ];
-  }
+export default function handleProfileSignup(firstName, lastName, fileName) {
+  const promises = [signUpUser(firstName, lastName), uploadPhoto(fileName)];
+  const result = [];
+  return Promise.allSettled(promises).then((results) => {
+    results.map(({ status, value, reason }) => (
+      result.push({
+        status,
+        value: status === 'rejected' ? reason.toString() : value,
+      })
+    ));
+    return result;
+  });
 }
-
-export default handleProfileSignup;
