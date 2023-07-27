@@ -1,10 +1,10 @@
 // 4-pricing.js
-import Currency from './3-currency.js';
+import Currency from "./3-currency.js";
 
 export default class Pricing {
   constructor(amount, currency) {
-    this._amount = this.validateNumber(amount, 'Amount');
-    this._currency = this.validateCurrency(currency, 'Currency');
+    this._amount = this.validateNumber(amount, "Amount");
+    this._currency = this.validateCurrency(currency, "Currency");
   }
 
   get amount() {
@@ -12,7 +12,7 @@ export default class Pricing {
   }
 
   set amount(newAmount) {
-    this._amount = this.validateNumber(newAmount, 'Amount');
+    this._amount = this.validateNumber(newAmount, "Amount");
   }
 
   get currency() {
@@ -20,7 +20,7 @@ export default class Pricing {
   }
 
   set currency(newCurrency) {
-    this._currency = this.validateCurrency(newCurrency, 'Currency');
+    this._currency = this.validateCurrency(newCurrency, "Currency");
   }
 
   displayFullPrice() {
@@ -32,7 +32,7 @@ export default class Pricing {
   }
 
   validateNumber(value, attribute) {
-    if (typeof value !== 'number') {
+    if (typeof value !== "number") {
       throw new TypeError(`${attribute} must be a number`);
     }
     return value;
