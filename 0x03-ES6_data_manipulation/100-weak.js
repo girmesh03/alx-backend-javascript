@@ -1,5 +1,3 @@
-// 100-weak.js
-
 // Create a new WeakMap to store the number of times each endpoint is queried
 export const weakMap = new WeakMap();
 
