@@ -1,68 +1,46 @@
-interface Teacher {
-  readonly  firstName: string;
-  readonly  lastName: string;
-  fullTimeEmployee: boolean;
-  location: string;
-  yearsOfExperience?: number;
-  [propName: string]: any;
-}
+// main.ts
 
-const teacher3: Teacher = {
-  firstName: 'John',
-  fullTimeEmployee: false,
-  lastName: 'Doe',
-  location: 'London',
-  contract: false,
-};
-
-console.log(teacher3);
-
-
-interface Directors extends Teacher {
-  numberOfReports: number;
-}
-
-const director1: Directors = {
-  firstName: 'John',
-  lastName: 'Doe',
-  location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
-};
-
-console.log(director1);
-
-interface PrintTeacherFunction {
-  (firstName: string, lastName: string): string;
-}
-
-const printTeacher: PrintTeacherFunction = function(firstName, lastName) {
-  return `${firstName.charAt(0)}.${lastName}`;
-};
-
-interface StudentClassInterface  {
-  workOnHomework(): string;
-  displayName(): string;
-}
-
-interface StudentConstructor {
-  new(firstName: string, lastName: string): StudentClassInterface;
-}
-
-class StudentClass implements StudentClassInterface {
+// Step 1: Define the interface
+interface Student {
   firstName: string;
   lastName: string;
-
-  constructor(firstName: string, lastName: string) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-
-  workOnHomework(): string {
-    return 'Currently working';
-  }
-
-  displayName(): string {
-    return this.firstName;
-  }
+  age: number;
+  location: string;
 }
+
+// Step 2: Create two students and store them in an array
+const student1: Student = {
+  firstName: "John",
+  lastName: "Doe",
+  age: 20,
+  location: "New York"
+};
+
+const student2: Student = {
+  firstName: "Jane",
+  lastName: "Smith",
+  age: 22,
+  location: "Los Angeles"
+};
+
+const studentsList: Student[] = [student1, student2];
+
+// Step 3: Render table and append rows
+function renderTable() {
+  const table = document.createElement("table");
+  table.innerHTML = "<tr><th>First Name</th><th>Location</th></tr>";
+
+  studentsList.forEach((student) => {
+    const row = table.insertRow();
+    const firstNameCell = row.insertCell(0);
+    const locationCell = row.insertCell(1);
+
+    firstNameCell.textContent = student.firstName;
+    locationCell.textContent = student.location;
+  });
+
+  document.body.appendChild(table);
+}
+
+// Step 4: Call the renderTable function to display the table
+renderTable();
