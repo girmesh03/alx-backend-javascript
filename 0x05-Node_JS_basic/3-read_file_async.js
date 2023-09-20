@@ -58,5 +58,4 @@ function countStudents(path) {
 
   return promise;
 }
-
 module.exports = countStudents;
