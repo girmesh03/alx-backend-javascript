@@ -2,34 +2,40 @@ const fs = require('fs');
 
 function countStudents(path) {
   try {
-    const data = fs.readFileSync(path, 'utf8');
-    const lines = data.split('\n');
-    let count = 0;
+    const results = fs.readFileSync(path, { encoding: 'utf8' }).split(/\r?\n/);
+    const lines = results;
+    let i = 0;
+    let countStudents = 0;
     const fields = {};
-    const students = {};
 
     for (const line of lines) {
-      if (line !== '') {
-        count += 1;
-        const student = line.split(',');
-        if (!fields[student[3]]) {
-          fields[student[3]] = [];
+      if (line.trim() !== '' && i > 0) {
+        countStudents += 1;
+        const [fname, lname, age, field] = line.split(','); // eslint-disable-line
+        if (!fields[field]) {
+          fields[field] = {
+            count: 1,
+            students: [fname],
+          };
+        } else {
+          const newCount = fields[field].count + 1;
+          const newStudents = fields[field].students.concat(fname);
+          fields[field] = {
+            count: newCount,
+            students: newStudents,
+          };
         }
-        fields[student[3]].push(student[0]);
-        students[student[3]] = count;
       }
+      i += 1;
     }
-    console.log(`Number of students: ${count}`);
-    for (const field in fields) {
-      if (field) {
-        const list = fields[field];
-        const num = students[field];
-        console.log(
-          `Number of students in ${field}: ${num}. List: ${list.join(', ')}`
-        );
-      }
+
+    console.log(`Number of students: ${countStudents}`);
+    for (const field of Object.keys(fields)) {
+      const n = fields[field].count;
+      const names = fields[field].students.join(', ');
+      console.log(`Number of students in ${field}: ${n}. List: ${names}`);
     }
-  } catch (err) {
+  } catch (error) {
     throw new Error('Cannot load the database');
   }
 }
