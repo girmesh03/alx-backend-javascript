@@ -9,6 +9,6 @@ app.use('/students', router);
 app.use('/students/:major', router);
 
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`);
+	console.log(`Listening at http://localhost:${port}`);
 });
 module.exports = app;
