@@ -13,5 +13,4 @@ app.get('/students', (request, response) =>
 app.get('/students/:major', (request, response) =>
   StudentsController.getAllStudentsByMajor(request, response)
 );
-
 module.exports = app;
