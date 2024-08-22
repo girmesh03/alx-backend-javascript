@@ -47,6 +47,7 @@ function countStudents(path) {
           }
           msg = msg.slice(0, -1);
         };
+
         display();
         resolve(msg);
       }
